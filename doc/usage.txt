@@ -1,0 +1,27 @@
+NerdArena sandbox
+Copyright © 2023 Cătălin Frâncu <cata@francu.com>
+
+na-sandbox sandboxes a program to constrain and measure time and memory usage.
+na-sandbox uses cgroups and pivot_root to guarantee security. It is primarily
+intented to evaluate user programs on nerdarena.ro
+
+USAGE:
+    na-sandbox [OPTIONS...] PROGRAM [-- PROGRAM_ARGS...]
+
+OPTIONS:
+    -h, --help
+            Prints this help message.
+
+    -t, --time <time>
+            User time limit. If the program uses more user time than the
+            amount given, it will be killed. Multiple threads running at the
+            same time will add up their user time. Given as an unsigned
+            number followed by one of the following suffixes: ns(nanoseconds),
+            ms(milliseconds) or s(seconds).
+
+ARGS:
+    PROGRAM
+            The program to run, relative to the pivoted root.
+
+    PROGRAM_ARGS
+            Arguments to pass to the program.
