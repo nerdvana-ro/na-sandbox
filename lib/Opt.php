@@ -5,10 +5,20 @@
  **/
 
 class Opt {
-  public static ?string $myself = null; // PHP script name
-  public static ?int $time = null;      // time limit in nanoseconds
-  public static ?string $program = null; // program to sandbox
-  public static array $programArgs = []; // arguments to pass to the program
+  // PHP script name (for help messages only)
+  public static ?string $myself = null;
+
+  // time limit in seconds
+  public static ?float $time = null;
+
+  // wall time limit in seconds
+  public static ?float $wallTime = null;
+
+  // program to sandbox
+  public static ?string $program = null;
+
+  // arguments to pass to the program
+  public static array $programArgs = [];
 
   /**
    * Main parser function.
@@ -26,6 +36,11 @@ class Opt {
         case '-t':
         case '--time':
           self::$time = Str::parseDuration(array_shift($argv));
+          break;
+
+        case '-w':
+        case '--wall-time':
+          self::$wallTime = Str::parseDuration(array_shift($argv));
           break;
 
         default:

@@ -27,4 +27,24 @@ class Util {
     printf("\n");
     exit(1);
   }
+
+  static function spawnJail() {
+    $uid = posix_getuid();
+    $gid = posix_getgid();
+  }
+
+  static function wait() {
+    $endTime = (Opt::$wallTime)
+      ? (microtime(true) + Opt::$wallTime)
+      : null;
+
+    while (true) {
+
+      // check wall time limit if enforced
+      if ($endTime && (microtime(true) > $endTime)) {
+        return 'Wall time limit exceeded.';
+      }
+
+    }
+  }
 }

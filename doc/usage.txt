@@ -19,6 +19,12 @@ OPTIONS:
             number followed by one of the following suffixes: ns(nanoseconds),
             ms(milliseconds) or s(seconds).
 
+    -w, --wall-time <wall-time>
+            Wall time limit. If the program runs longer than this (in real
+            time) it is killed. Given as an unsigned number followed by one of
+            the following suffixes: ns(nanoseconds), ms(milliseconds) or
+            s(seconds)
+
 ARGS:
     PROGRAM
             The program to run, relative to the pivoted root.

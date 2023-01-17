@@ -16,19 +16,19 @@ class Str {
   /**
    * @param string $s A string consisting of digits followed by s (seconds), ms
    * (milliseconds) or ns (nanoseconds).
-   * @return The numeric value converted to nanoseconds.
+   * @return The numeric value converted to seconds.
    */
-  static function parseDuration(string $s): int {
+  static function parseDuration(string $s): float {
     if (!preg_match('/^(?P<value>[0-9]+)(?P<unit>s|ms|ns)$/', $s, $match)) {
       Util::dieWithHelp("Invalid duration string '{$s}'.");
     }
 
     switch ($match['unit']) {
-      case 's': $mult = 1000000; break;
-      case 'ms': $mult = 1000; break;
-      case 'ns': $mult = 1; break;
+      case 's': $div = 1; break;
+      case 'ms': $div = 1000; break;
+      case 'ns': $div = 1000000; break;
     }
 
-    return $match['value'] * $mult;
+    return $match['value'] / $div;
   }
 }
